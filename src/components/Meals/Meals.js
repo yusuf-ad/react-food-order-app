@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const meals = [
   {
     title: "Sushi",
@@ -26,17 +28,29 @@ const meals = [
   },
 ];
 
-export default function Meals() {
+export default function Meals({ setTotalAmount }) {
   return (
     <div className="meals">
       {meals.map((meal) => (
-        <Meal meal={meal} />
+        <Meal key={meal.title} meal={meal} setTotalAmount={setTotalAmount} />
       ))}
     </div>
   );
 }
 
-function Meal({ meal }) {
+function Meal({ meal, setTotalAmount }) {
+  const [amount, setAmount] = useState(1);
+
+  function handleSetAmount(e) {
+    if (+e.target.value < 1) return setAmount("");
+
+    setAmount(+e.target.value);
+  }
+
+  function handleTotalAmount() {
+    setTotalAmount((total) => total + amount);
+  }
+
   return (
     <div className="meal">
       <div className="description">
@@ -47,10 +61,10 @@ function Meal({ meal }) {
       <div className="purchase">
         <div className="amount">
           <label>Amount</label>
-          <input type="number" placeholder="1" />
+          <input onChange={handleSetAmount} value={amount} type="number" />
         </div>
-        <button className="btn-add">
-          <i class="fa-solid fa-plus "></i> Add
+        <button onClick={handleTotalAmount} className="btn-add">
+          <i className="fa-solid fa-plus "></i> Add
         </button>
       </div>
     </div>

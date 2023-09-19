@@ -1,8 +1,8 @@
-export default function Cart() {
+export default function Cart({ totalAmount, setIsModalOpen }) {
   return (
-    <button className="cart">
-      <i class="fa-solid fa-cart-shopping cart-icon"></i> Your Cart
-      <span className="unit">0</span>
+    <button onClick={() => setIsModalOpen(true)} className="cart">
+      <i className="fa-solid fa-cart-shopping cart-icon"></i> Your Cart
+      <span className="unit">{totalAmount}</span>
     </button>
   );
 }

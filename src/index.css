@@ -31,7 +31,7 @@ body {
   width: 100vw;
   position: fixed;
   top: 0;
-  z-index: 99;
+  z-index: 9;
 
   background-color: #f03e3e;
   padding: 0.8rem 12.8rem;
@@ -166,7 +166,7 @@ body {
 }
 
 .purchase input {
-  width: 4.2rem;
+  width: 4.8rem;
   margin-left: 0.8rem;
   font-weight: 700;
   border: 1px solid #adb5bd;
@@ -192,4 +192,122 @@ body {
 
 .btn-add i {
   font-size: 1.2rem;
+}
+
+/* modal */
+
+.modal-overlay {
+  top: 0;
+
+  position: fixed;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.65);
+  height: 100vh;
+  width: 100%;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+
+  background-color: #f8f9fa;
+  width: 58rem;
+  position: fixed;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 1.6rem 2rem;
+  border-radius: 18px;
+}
+
+.modal .meal-title {
+  margin-bottom: 0.6rem;
+}
+
+.modal .meal-unit {
+  margin-left: 0.6rem;
+  font-weight: 500;
+  border: 1px solid #ced4da;
+  padding: 0.1rem 0.8rem;
+  border-radius: 4px;
+}
+
+.modal .amount {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.modal .amount button {
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  padding: 0.4rem 1.2rem;
+  border: none;
+  background: none;
+  border: 1px solid #e03131;
+  transition: background-color 0.2s;
+}
+
+.modal .amount button:active {
+  transform: scale(0.95);
+}
+
+.modal .amount button:hover {
+  background-color: #c9222a;
+  color: #fff;
+}
+
+.modal .total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-top: 0.2rem solid #e03131;
+  margin-top: 1.2rem;
+  padding: 1.6rem 0.2rem;
+}
+
+.modal .total-amount {
+  color: #c9222a;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.btns-cta {
+  display: flex;
+  gap: 0.8rem;
+
+  margin-left: auto;
+}
+
+.btns-cta button {
+  cursor: pointer;
+  border: 1px solid #c9222a;
+  padding: 0.8rem 2rem;
+  border-radius: 100px;
+  transition: transform 0.2s;
+}
+
+.btns-cta button:hover {
+  transform: translateY(-0.1rem);
+}
+
+.btns-cta button:active {
+  transform: scale(0.95);
+}
+
+.btn-close {
+  background: none;
+  color: #c9222a;
+  border: 1px solid #c9222a;
+  padding: 0.8rem 2rem;
+  border-radius: 100px;
+}
+
+.btn-order {
+  font-weight: 700;
+  background-color: #c9222a;
+  color: #fff;
 }
