@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+body {
+  position: relative;
+  background-color: #212529;
+  font-size: 1.4rem;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+}
+
+/* header */
+
+.header {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+
+  background-color: #f03e3e;
+  padding: 0.8rem 12.8rem;
+
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.logo {
+  color: #fff;
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.cart {
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #fff;
+  background-color: #c9222a;
+  border: none;
+  padding: 1.6rem 3.6rem;
+  border-radius: 100px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.cart:hover {
+  background-color: #212529;
+}
+
+.cart-icon {
+  margin-right: 0.6rem;
+}
+
+.unit {
+  margin-left: 0.8rem;
+  background-color: red;
+  padding: 0.8rem 1.2rem;
+  border-radius: 100%;
+}
+
+/* overlay */
+.overlay {
+  margin-top: 1.6rem;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  height: 64vh;
+  width: 100vw;
+  background-image: url(https://reactmealsproject.netlify.app/static/media/meals.b0d8a85601c9f0df27c0.jpg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 75%);
+}
+
+/* message */
+.message {
+  max-width: 72rem;
+  margin: 24rem auto 0;
+
+  padding: 2rem 2.4rem;
+  border-radius: 24px;
+  text-align: center;
+
+  background-color: #f03e3e;
+  color: #f8f9fa;
+}
+
+.message h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1.4rem;
+}
+
+.message p:last-of-type {
+  margin-top: 0.8rem;
+  padding: 0 3.2rem;
+}
+
+/* meals */
+
+.meals {
+  max-width: 86rem;
+  margin: 4.8rem auto 8rem;
+  background-color: #fff;
+  border-radius: 18px;
+  padding: 0.2rem 2rem;
+}
+
+.meal {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.6rem 0 2rem;
+}
+
+.meal:not(:last-child) {
+  border-bottom: 1px solid #adb5bd84;
+}
+
+.meal-title {
+  font-size: 2rem;
+}
+
+.meal-description {
+  font-style: italic;
+  color: #868e96;
+  margin: 0.2rem 0;
+}
+
+.meal-price {
+  color: #c9222a;
+  font-weight: 700;
+}
+
+.amount {
+  display: flex;
+  align-items: center;
+}
+
+.purchase {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.purchase label {
+  font-weight: 600;
+}
+
+.purchase input {
+  width: 4.2rem;
+  margin-left: 0.8rem;
+  font-weight: 700;
+  border: 1px solid #adb5bd;
+  padding: 0.4rem;
+}
+
+.btn-add {
+  cursor: pointer;
+  display: block;
+  border: none;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #fff;
+  background-color: #c9222a;
+  padding: 0.8rem 2.4rem;
+  border-radius: 100px;
+  transition: background-color 0.2s;
+}
+
+.btn-add:hover {
+  background-color: #212529;
+}
+
+.btn-add i {
+  font-size: 1.2rem;
+}
