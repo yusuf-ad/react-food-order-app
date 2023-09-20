@@ -28,17 +28,22 @@ const meals = [
   },
 ];
 
-export default function Meals({ setTotalAmount }) {
+export default function Meals({ setTotalUnit, onAddMeals }) {
   return (
     <div className="meals">
       {meals.map((meal) => (
-        <Meal key={meal.title} meal={meal} setTotalAmount={setTotalAmount} />
+        <Meal
+          key={meal.title}
+          meal={meal}
+          onAddMeals={onAddMeals}
+          setTotalUnit={setTotalUnit}
+        />
       ))}
     </div>
   );
 }
 
-function Meal({ meal, setTotalAmount }) {
+function Meal({ meal, setTotalUnit, onAddMeals }) {
   const [amount, setAmount] = useState(1);
 
   function handleSetAmount(e) {
@@ -48,7 +53,7 @@ function Meal({ meal, setTotalAmount }) {
   }
 
   function handleTotalAmount() {
-    setTotalAmount((total) => total + amount);
+    setTotalUnit((total) => total + amount);
   }
 
   return (
@@ -63,7 +68,13 @@ function Meal({ meal, setTotalAmount }) {
           <label>Amount</label>
           <input onChange={handleSetAmount} value={amount} type="number" />
         </div>
-        <button onClick={handleTotalAmount} className="btn-add">
+        <button
+          onClick={() => {
+            handleTotalAmount();
+            onAddMeals(meal, amount);
+          }}
+          className="btn-add"
+        >
           <i className="fa-solid fa-plus "></i> Add
         </button>
       </div>
