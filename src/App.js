@@ -29,6 +29,13 @@ export default function App() {
     [orderedMeals]
   );
 
+  useEffect(
+    function () {
+      localStorage.setItem("orderedMeals", JSON.stringify(orderedMeals));
+    },
+    [orderedMeals]
+  );
+
   function handleAddMeals(meal, amount) {
     // Check if a meal with the same name already exists in orderedMeals
     const existingMealIndex = orderedMeals.findIndex(
@@ -49,8 +56,6 @@ export default function App() {
       };
       setOrderedMeals([...orderedMeals, newMeal]);
     }
-
-    localStorage.setItem("orderedMeals", JSON.stringify(orderedMeals));
   }
 
   function incrementMealAmount(mealTitle) {
