@@ -315,3 +315,10 @@ body {
   background-color: #c9222a;
   color: #fff;
 }
+
+.order-cta {
+  font-size: 2rem;
+  padding: 2.4rem 0;
+  text-align: center;
+  font-weight: 700;
+}

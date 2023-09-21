@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function Modal({ isModalOpen, setIsModalOpen, orderedMeals }) {
+export default function Modal({
+  isModalOpen,
+  setIsModalOpen,
+  orderedMeals,
+  setOrderedMeals,
+  incrementMealAmount,
+  decrementMealAmount,
+}) {
   const [totalAmount, setTotalAmount] = useState(0);
   const modal = useRef(null);
 
@@ -15,20 +22,34 @@ export default function Modal({ isModalOpen, setIsModalOpen, orderedMeals }) {
     [orderedMeals]
   );
 
+  function handleOrder() {
+    setOrderedMeals([]);
+    alert("Succesfully ordered");
+    setIsModalOpen(false);
+  }
+
   return (
     <>
       {isModalOpen && (
         <>
           <div className="modal" ref={modal}>
-            <div className="ordered-meals">
-              {orderedMeals.map((meal) => (
-                <OrderedMeal
-                  key={meal.title}
-                  meal={meal}
-                  setTotalAmount={setTotalAmount}
-                />
-              ))}
-            </div>
+            {orderedMeals.length ? (
+              <div className="ordered-meals">
+                {orderedMeals.map((meal) => (
+                  <OrderedMeal
+                    key={meal.title}
+                    meal={meal}
+                    setTotalAmount={setTotalAmount}
+                    incrementMealAmount={incrementMealAmount}
+                    decrementMealAmount={decrementMealAmount}
+                  />
+                ))}
+              </div>
+            ) : (
+              <p className="order-cta">
+                Let's get order some delicious food 😂
+              </p>
+            )}
             <div className="total">
               <h2>Total amount</h2>
               <p className="total-amount">${totalAmount.toFixed(2)}</p>
@@ -40,7 +61,11 @@ export default function Modal({ isModalOpen, setIsModalOpen, orderedMeals }) {
               >
                 Close
               </button>
-              <button className="btn-order">Order</button>
+              {orderedMeals.length > 0 && (
+                <button onClick={handleOrder} className="btn-order">
+                  Order
+                </button>
+              )}
             </div>
           </div>
           <div
@@ -53,7 +78,7 @@ export default function Modal({ isModalOpen, setIsModalOpen, orderedMeals }) {
   );
 }
 
-function OrderedMeal({ meal }) {
+function OrderedMeal({ meal, incrementMealAmount, decrementMealAmount }) {
   return (
     <div className="meal">
       <div className="description">
@@ -62,10 +87,16 @@ function OrderedMeal({ meal }) {
         <span className="meal-unit">x {meal.amount} </span>
       </div>
       <div className="amount">
-        <button className="btn-dec">
+        <button
+          onClick={() => decrementMealAmount(meal.title)}
+          className="btn-dec"
+        >
           <i className="fa-solid fa-minus "></i>
         </button>
-        <button className="btn-inc">
+        <button
+          onClick={() => incrementMealAmount(meal.title)}
+          className="btn-inc"
+        >
           <i className="fa-solid fa-plus "></i>
         </button>
       </div>

@@ -43,17 +43,13 @@ export default function Meals({ setTotalUnit, onAddMeals }) {
   );
 }
 
-function Meal({ meal, setTotalUnit, onAddMeals }) {
+function Meal({ meal, onAddMeals }) {
   const [amount, setAmount] = useState(1);
 
   function handleSetAmount(e) {
     if (+e.target.value < 1) return setAmount("");
 
     setAmount(+e.target.value);
-  }
-
-  function handleTotalAmount() {
-    setTotalUnit((total) => total + amount);
   }
 
   return (
@@ -70,7 +66,6 @@ function Meal({ meal, setTotalUnit, onAddMeals }) {
         </div>
         <button
           onClick={() => {
-            handleTotalAmount();
             onAddMeals(meal, amount);
           }}
           className="btn-add"

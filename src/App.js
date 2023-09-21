@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "./components/Layout/Header";
 import Logo from "./components/UI/Logo";
@@ -10,9 +10,20 @@ import Meals from "./components/Meals/Meals";
 import Modal from "./components/UI/Modal";
 
 export default function App() {
-  const [totalUnit, setTotalUnit] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [orderedMeals, setOrderedMeals] = useState([]);
+  const [totalUnit, setTotalUnit] = useState(0);
+
+  useEffect(
+    function () {
+      const total = orderedMeals.reduce((accumulator, meal) => {
+        return accumulator + +meal.amount;
+      }, 0);
+      // updating state is asynchronous
+      setTotalUnit(total);
+    },
+    [orderedMeals]
+  );
 
   function handleAddMeals(meal, amount) {
     // Check if a meal with the same name already exists in orderedMeals
@@ -36,6 +47,26 @@ export default function App() {
     }
   }
 
+  function incrementMealAmount(mealTitle) {
+    const updatedMeals = orderedMeals.map((meal) => {
+      if (meal.title === mealTitle) {
+        return { ...meal, amount: meal.amount + 1 };
+      }
+      return meal;
+    });
+    setOrderedMeals(updatedMeals);
+  }
+
+  function decrementMealAmount(mealTitle) {
+    const updatedMeals = orderedMeals.map((meal) => {
+      if (meal.title === mealTitle && meal.amount > 0) {
+        return { ...meal, amount: meal.amount - 1 };
+      }
+      return meal;
+    });
+    setOrderedMeals(updatedMeals.filter((meal) => meal.amount > 0));
+  }
+
   return (
     <>
       <Header>
@@ -44,12 +75,15 @@ export default function App() {
       </Header>
       <main>
         <Message />
-        <Meals setTotalUnit={setTotalUnit} onAddMeals={handleAddMeals} />
+        <Meals onAddMeals={handleAddMeals} />
       </main>
       <Modal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         orderedMeals={orderedMeals}
+        setOrderedMeals={setOrderedMeals}
+        incrementMealAmount={incrementMealAmount}
+        decrementMealAmount={decrementMealAmount}
       />
     </>
   );
