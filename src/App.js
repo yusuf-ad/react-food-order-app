@@ -10,9 +10,13 @@ import Meals from "./components/Meals/Meals";
 import Modal from "./components/UI/Modal";
 
 export default function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [orderedMeals, setOrderedMeals] = useState([]);
+  const [orderedMeals, setOrderedMeals] = useState(function () {
+    const storedOrder = localStorage.getItem("orderedMeals");
+    return storedOrder ? JSON.parse(storedOrder) : [];
+  });
+
   const [totalUnit, setTotalUnit] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(
     function () {
@@ -45,6 +49,8 @@ export default function App() {
       };
       setOrderedMeals([...orderedMeals, newMeal]);
     }
+
+    localStorage.setItem("orderedMeals", JSON.stringify(orderedMeals));
   }
 
   function incrementMealAmount(mealTitle) {
