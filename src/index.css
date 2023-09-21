@@ -19,6 +19,20 @@ body {
   overflow-x: hidden;
 }
 
+/* 960px */
+@media only screen and (max-width: 60em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+/* 720px */
+@media only screen and (max-width: 45em) {
+  main {
+    padding: 0 3.6rem;
+  }
+}
+
 #root {
   width: 100vw;
   position: absolute;
@@ -30,16 +44,31 @@ body {
 .header {
   width: 100vw;
   position: fixed;
-  top: 0;
+
   z-index: 9;
 
   background-color: #f03e3e;
   padding: 0.8rem 12.8rem;
 
   display: flex;
+  align-items: center;
   justify-content: space-between;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+/* 960px */
+@media only screen and (max-width: 60em) {
+  .header {
+    padding: 1.2rem 4.8rem;
+  }
+}
+
+/* 480px */
+@media only screen and (max-width: 30em) {
+  .header {
+    padding: 1.2rem 2.4rem;
+  }
 }
 
 .logo {
@@ -58,6 +87,13 @@ body {
   border-radius: 100px;
   transition: background-color 0.2s;
   cursor: pointer;
+}
+
+/* 480px */
+@media only screen and (max-width: 30em) {
+  .cart {
+    padding: 1.6rem 2.4rem;
+  }
 }
 
 .cart:hover {
