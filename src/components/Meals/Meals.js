@@ -30,7 +30,7 @@ const meals = [
 
 export default function Meals({ setTotalUnit, onAddMeals }) {
   return (
-    <div className="meals">
+    <section className="meals">
       {meals.map((meal) => (
         <Meal
           key={meal.title}
@@ -39,7 +39,7 @@ export default function Meals({ setTotalUnit, onAddMeals }) {
           setTotalUnit={setTotalUnit}
         />
       ))}
-    </div>
+    </section>
   );
 }
 
@@ -61,8 +61,13 @@ function Meal({ meal, onAddMeals }) {
       </div>
       <div className="purchase">
         <div className="amount">
-          <label>Amount</label>
-          <input onChange={handleSetAmount} value={amount} type="number" />
+          <label htmlFor={meal.title}>Amount</label>
+          <input
+            id={meal.title}
+            onChange={handleSetAmount}
+            value={amount}
+            type="number"
+          />
         </div>
         <button
           onClick={() => {
